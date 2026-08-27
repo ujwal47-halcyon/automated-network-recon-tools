@@ -7,7 +7,7 @@ penetration testing. Everything here is written in Python.
 
 ## Projects
 
-### 1. Port Scanner
+### 1. Port Scanner.
 A multithreaded network scanner that identifies open ports, detects
 services, grabs banners and saves scan reports.
 
@@ -20,7 +20,7 @@ services, grabs banners and saves scan reports.
 
 ---
 
-### 2. Hash Cracker
+### 2. Hash Cracker.
 A dictionary-based hash cracking tool that attempts to crack hashed
 passwords using a wordlist
 
