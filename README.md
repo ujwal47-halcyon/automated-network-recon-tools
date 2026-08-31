@@ -22,7 +22,7 @@ services, grabs banners and saves scan reports.
 
 ### 2. Hash Cracker.
 A dictionary-based hash cracking tool that attempts to crack hashed
-passwords using a wordlist
+passwords using a wordlist.
 
 ---
 
@@ -35,7 +35,7 @@ brute force attempts, directory scanning, and abnormal request volumes.
 - Detects directory scanning (repeated 404s from same IP)
 - Flags high request volume from single IPs
 - Status code breakdown and top path analysis
-- Optional report output to .txt file
+- Optional report output to .txt file.
 
 ---
 
