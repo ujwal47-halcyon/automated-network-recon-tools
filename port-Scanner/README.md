@@ -10,10 +10,10 @@ and upgraded with threading, banner grabbing and report output.
 
 Points at a target IP, spins up 100 threads and scans ports concurrently.
 For each open port it tries to grab the service banner to identify what
-version is running. Results can be saved to a report file.
+version is running. Results can be saved to a report file
 
 Without threading, scanning 1024 ports took ~17 minutes.
-After adding threading it takes ~6 seconds. Thats the difference.
+After adding threading it takes ~6 seconds. Thats the difference
 
 ---
 
