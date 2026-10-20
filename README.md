@@ -1,58 +1,31 @@
-# Python Security Tools
+# Python security scripts
 
-A collection of Python tools I'm building while learning networking and security. The tools are at different stages, so check each folder for its own instructions and requirements.
+Small scripts I wrote while learning networking and security. They are learning projects, not finished tools. I only run them on my own machines and on test data.
 
-## Projects
+## What's in here
 
-### 1. Port scanner
+**port-Scanner/port-Scanner.py**
+A threaded TCP connect scanner. Give it an IP and a port range, and it prints which ports answer, names the service for 12 common ports, and tries to read a banner. `-r` saves the result to a text file.
 
-Scans selected ports and reports which ones respond. The script also attempts basic service identification and banner collection.
+```
+python3 port-Scanner/port-Scanner.py 127.0.0.1 -s 1 -e 1024 -t 100 -r
+```
 
-[Open folder](port-Scanner/)
+**log-Analyser/log-analyser.py**
+Reads an Apache/Nginx combined-format access log and flags IPs with 10 or more failed logins, 20 or more requests, or 15 or more 404s. `Sample.log` is there to try it on. A flag only means "look at this", not "attack".
 
-### 2. Web log analyser
+**hash-Cracker/hash-Cracker.py**
+Hashes every word in a wordlist and compares it to a target hash. It asks for the algorithm (md5, sha1 or sha256), the hash and the wordlist path, and defaults to `rockyou.txt`. Only for hashes I made myself.
 
-Reads web server logs and flags patterns worth checking, such as repeated HTTP 401 or 404 responses and unusually high request counts from one address. These patterns can have legitimate causes, so review the logs before treating them as an attack.
+**Wordlist-Generator/wordgen-1.py**
+An interactive wordlist generator. It asks for names, dates and numbers, builds leetspeak, case and date variants from them, and saves the list to a file.
 
-[Open folder](log-Analyser/)
+**Hackathon/**
+My CTF cheat sheet for the Firewall '26 competition.
 
-### 3. Hash cracker
+## Known problems
 
-A dictionary-based exercise that checks whether a hash matches a value in a supplied wordlist. Use only hashes you own or have permission to test.
-
-[Open folder](hash-Cracker/)
-
-### 4. Wordlist generator
-
-Generates candidate strings from user-provided inputs for controlled password-auditing exercises.
-
-[Open folder](Wordlist-Generator/)
-
-### 5. ESP32 project
-
-The repository also contains an ESP32 Bluetooth project. Review its code and local documentation before using any hardware. Do not use equipment to interfere with other people's devices or communications.
-
-[Open folder](ESP-32/)
-
-### 6. Hackathon notes
-
-CTF reference notes from hackathon practice.
-
-[Open folder](Hackathon/)
-
-## How to use the projects
-
-Each tool has its own files and may have different requirements. Read the README in that folder and check the source before running it. For the Wordlist Generator, the current script is named `wordgen-1.py`, so use the path that matches the file in the folder.
-
-## Safety
-
-Use the tools on your own systems, local test data or environments where you have permission. Do not scan public systems or attempt password recovery against accounts or hashes you are not authorised to test. Radio jamming and interference can be illegal and can affect other devices; do not operate jamming functions.
-
-## Limitations
-
-These are learning projects, not production security products. Detection results depend on the input data and implementation. Review the code and verify findings before drawing conclusions.
-
-## Author
-
-Ujwal Vishwanath  
-BCA Cybersecurity and Digital Forensics, REVA University
+- The port scanner swallows every error with a bare `except`, so a failed scan looks the same as a closed port.
+- The port scanner reads each banner on a second connection and only uses IPv4.
+- The log analyser counts requests per IP over the whole file. It has no time window, so a slow steady client and a burst look the same.
+- The hash cracker is interactive only and takes no command-line arguments.
